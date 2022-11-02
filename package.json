@@ -1,0 +1,30 @@
+{
+  "name": "vue-renju",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "minify src/renju-worker.full.js > src/renju-worker.js && vite build && ./deploy", 
+    "test:unit": "vitest --environment jsdom --root src/",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/vue-fontawesome": "^3.0.1",
+    "bootstrap": "^5.2.2",
+    "vue": "^3.2.41",
+    "web-worker": "^1.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.2",
+    "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "@vue/test-utils": "^2.1.0",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "jsdom": "^20.0.1",
+    "vite": "^3.1.8",
+    "vitest": "^0.24.3"
+  }
+}
