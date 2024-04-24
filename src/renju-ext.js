@@ -28,7 +28,9 @@ export function undo(renju){
         //console.log("Nothing to reset.")
         return
     }
-    renju.undo()
+    if ( !renju.playerOnly ){
+        renju.undo()
+    }
     renju.undo()
 }
 export function reset(renju){
