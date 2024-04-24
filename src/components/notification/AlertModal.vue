@@ -1,12 +1,3 @@
-<script setup>
-    import { reactive } from 'vue'
-    import { state } from './'
-    const notificationState = reactive(state)
-    function close(){
-        notificationState.showAlert=false
-    }
-</script>
-
 <template>
   <Transition name="modal">
     <div v-if="notificationState.showAlert" class="modal-mask">
@@ -29,6 +20,15 @@
     </div>
   </Transition>
 </template>
+
+<script setup>
+    import { reactive } from 'vue'
+    import { state } from './'
+    const notificationState = reactive(state)
+    function close(){
+        notificationState.showAlert=false
+    }
+</script>
 
 <style scoped>
 .modal-mask {

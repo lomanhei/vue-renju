@@ -1,3 +1,16 @@
+<template>
+    <header>
+        <p class="title"><img alt="Vue logo" class="logo" src="./assets/logo.svg" width="40" height="40" />Vue-Renju</p>
+        <a class="info" href="https://en.wikipedia.org/wiki/Renju#Rules" target="_blank"><font-awesome-icon icon="fa fa-book" /> Rules</a>
+    </header>
+
+    <main>
+        <TopPanel :renju="renju"
+        />
+        <Board :renju="renju" />
+    </main>
+</template>
+
 <script setup>
     import { library } from '@fortawesome/fontawesome-svg-core'
     import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -11,19 +24,6 @@
     const renju = reactive(new Renju());
     
 </script>
-
-<template>
-    <header>
-        <p class="title"><img alt="Vue logo" class="logo" src="./assets/logo.svg" width="40" height="40" />Vue-Renju</p>
-        <a class="info" href="https://en.wikipedia.org/wiki/Renju#Rules" target="_blank"><font-awesome-icon icon="fa fa-book" /> Rules</a>
-    </header>
-
-    <main>
-        <TopPanel :renju="renju"
-        />
-        <Board :renju="renju" />
-    </main>
-</template>
 
 <style scoped>
     header {

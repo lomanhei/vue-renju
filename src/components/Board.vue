@@ -1,13 +1,3 @@
-<script setup>
-    import { reactive, toRaw } from 'vue'
-    import { play, getField, isLastMove } from '../renju-ext.js'
-    const props = defineProps({
-        renju: Object
-    })
-    const renju = reactive(props.renju)
-    const boardSize = renju.size
-</script>
-
 <template>
     <div class="board">
         <div v-for="(e, i) in boardSize*boardSize" v-on:click="play(renju,i)" class="grid" :class="[getField(renju,i), renju.winner || renju.draw ? 'disabled' : '']" >
@@ -23,6 +13,16 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { reactive, toRaw } from 'vue'
+import { play, getField, isLastMove } from '../renju-ext.js'
+const props = defineProps({
+    renju: Object
+})
+const renju = reactive(props.renju)
+const boardSize = renju.size
+</script>
 
 <style scoped>
     .board {

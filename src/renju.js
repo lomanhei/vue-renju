@@ -286,7 +286,12 @@ export class Renju {
     this.player = "W";
     this.winner = null;
     this.draw = false;
-    this.history = [];    
+    this.history = [];   
+    this.playerOnly = false; 
+  }
+
+  set(field, value) {
+    this[field] = value;
   }
   
   reset(player){

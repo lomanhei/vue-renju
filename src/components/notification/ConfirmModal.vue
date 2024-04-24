@@ -1,16 +1,3 @@
-<script setup>
-    import { reactive } from 'vue'
-    import { state } from './'
-    const notificationState = reactive(state)
-    function confirm(){
-        notificationState.confirmCallback()
-        notificationState.showConfirm=false;
-    }
-    function reject(){
-        notificationState.showConfirm=false;
-    }
-</script>
-
 <template>
   <Transition name="modal">
     <div v-if="notificationState.showConfirm" class="modal-mask">
@@ -37,6 +24,19 @@
     </div>
   </Transition>
 </template>
+
+<script setup>
+    import { reactive } from 'vue'
+    import { state } from './'
+    const notificationState = reactive(state)
+    function confirm(){
+        notificationState.confirmCallback()
+        notificationState.showConfirm=false;
+    }
+    function reject(){
+        notificationState.showConfirm=false;
+    }
+</script>
 
 <style scoped>
 .modal-mask {

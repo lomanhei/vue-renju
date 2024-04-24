@@ -16,7 +16,8 @@ export function newGame(renju){
     }
 }
 
-export function start(renju,playerFirst){
+export function start(renju,playerFirst,playerOnly=false){
+    renju.set("playerOnly",playerOnly)
     renju.reset(playerFirst ? "B" : "W")
     if(!playerFirst){
         renju.play(7,7)
@@ -46,7 +47,7 @@ export function reset(renju){
     }
 }
 export function play(renju,x){
-    if (renju.plays !== renju.player || renju.winner !== null){
+    if (( !renju.playerOnly && renju.plays !== renju.player) || renju.winner !== null){
         return
     }
     const boardSize = renju.size
@@ -57,7 +58,7 @@ export function play(renju,x){
     }
     renju.play(i,j)
     if (renju.winner !== null){
-        notificationState.alertMsg = "Player wins."
+        notificationState.alertMsg = !renju.playerOnly ? "Player wins." : renju.plays === "B" ?  "White wins." : "Black wins." 
         notificationState.alertMsgWidth = "250px"
         notificationState.showAlert = true
         return
@@ -68,8 +69,9 @@ export function play(renju,x){
         notificationState.showAlert = true
         return
     }
-    getNextMove(renju)
-    
+    if(!renju.playerOnly){
+        getNextMove(renju)
+    }    
 }
 export function getField(renju,x){
     const boardSize = renju.size
@@ -82,7 +84,7 @@ export function getField(renju,x){
     if (field === "W"){
         return "white"
     }    
-    if (renju.plays === renju.player && isForbidden(renju,i,j) ){
+    if ( (renju.playerOnly || renju.plays === renju.player) && isForbidden(renju,i,j) ){
         return "forbidden"
     }
     return "" 

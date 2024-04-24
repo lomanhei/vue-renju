@@ -1,21 +1,3 @@
-<script setup>
-    import { library } from '@fortawesome/fontawesome-svg-core'
-    import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-    import { faUndo, faSync, faFile, faCircle} from '@fortawesome/free-solid-svg-icons'
-    import { ref, reactive } from 'vue'
-    import { newGame, start, undo, reset } from '../renju-ext.js'
-    import { state } from './notification/'
-    import StartModal from './notification/StartModal.vue'
-    import AlertModal from './notification/AlertModal.vue'
-    import ConfirmModal from './notification/ConfirmModal.vue'
-    library.add(faUndo,faSync,faFile,faCircle)
-    const props = defineProps({
-        renju: Object
-    })
-    const renju = reactive(props.renju)
-    const notificationState = reactive(state)
-</script>
-
 <template>
     <div class="top-panel">
         <button id="show-modal" type="button" class="btn btn-success" @click="newGame(renju)">
@@ -32,13 +14,32 @@
         </div>
         <Teleport to="body">
             <StartModal @playBlack="start(renju,true)"
-                        @playWhite="start(renju,false)" >
+                        @playWhite="start(renju,false)"
+                        @playBoth="start(renju,true,true)" >
             </StartModal>
         </Teleport>
         <Teleport to="body"><AlertModal /></Teleport>
         <Teleport to="body"><ConfirmModal /> </Teleport>
     </div>
 </template>
+
+<script setup>
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { faUndo, faSync, faFile, faCircle} from '@fortawesome/free-solid-svg-icons'
+import { ref, reactive } from 'vue'
+import { newGame, start, undo, reset } from '../renju-ext.js'
+import { state } from './notification/'
+import StartModal from './notification/StartModal.vue'
+import AlertModal from './notification/AlertModal.vue'
+import ConfirmModal from './notification/ConfirmModal.vue'
+library.add(faUndo,faSync,faFile,faCircle)
+const props = defineProps({
+    renju: Object
+})
+const renju = reactive(props.renju)
+const notificationState = reactive(state)
+</script>
 
 <style scoped>
     .top-panel {

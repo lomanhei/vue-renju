@@ -1,7 +1,7 @@
 <script setup>
-    import { reactive } from 'vue'
-    import { state } from './'
-    const notificationState = reactive(state)
+import { reactive } from 'vue'
+import { state } from './'
+const notificationState = reactive(state)
 </script>
 
 <template>
@@ -10,21 +10,22 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header"><h3>New Game</h3></slot>
+            <slot name="header">
+              <h3>New Game</h3>
+            </slot>
           </div>
 
           <div class="modal-body">
             <slot name="body">
-              <button type="button" 
-                      class="btn btn-dark btn-lg btn-block" 
-                      @click="$emit('playBlack');notificationState.showStart=false">Player First</button>
-              <button type="button" 
-                      class="btn btn-light btn-lg btn-block"
-                      @click="$emit('playWhite');notificationState.showStart=false" 
-                      >Computer First</button>
+              <button type="button" class="btn btn-dark btn-lg btn-block"
+                @click="$emit('playBlack'); notificationState.showStart = false">Player First</button>
+              <button type="button" class="btn btn-light btn-lg btn-block"
+                @click="$emit('playWhite'); notificationState.showStart = false">Computer First</button>
+              <button type="button" class="btn btn-secondary btn-lg btn-block"
+                @click="$emit('playBoth'); notificationState.showStart = false">Player vs Player</button>
             </slot>
           </div>
-            
+
         </div>
       </div>
     </div>
@@ -66,10 +67,10 @@
 .modal-body {
   margin: 10px 0;
 }
-    
+
 .modal-body button {
-  border:2px solid #000;
-  width:100%;
+  border: 2px solid #000;
+  width: 100%;
   font-weight: 600;
   margin: 5px 0;
 }
