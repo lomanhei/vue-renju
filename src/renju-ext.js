@@ -24,7 +24,7 @@ export function start(renju,playerFirst,playerOnly=false){
     }
 }
 export function undo(renju){
-    if ( renju.winner !== null || renju.plays !== renju.player || renju.history.length < 2 ){
+    if ( renju.winner !== null || (!renju.playerOnly && renju.plays !== renju.player) || renju.history.length < 2 ){
         //console.log("Nothing to reset.")
         return
     }
